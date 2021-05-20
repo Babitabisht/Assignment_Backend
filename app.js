@@ -68,7 +68,7 @@ app.get("/api/getfileInfoByHash/:fileHash", fileController.getfileInfoByHash);
 
 
 
-const port = config.port || 3000;
+const port = config.port || 3001;
 app.listen(port, () => {
   console.log(
     "%s App running at http://localhost:%d in %s mode",

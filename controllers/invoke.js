@@ -1,10 +1,18 @@
 let request = require('request');
 const { env } = require('process');
 const config = require('../config.json')[env.NODE_ENV]
-
+const jwt = require('jsonwebtoken');
 
 function invokeToChaincode(req, res, funcType, param) {
 	return new Promise(function (resolve, reject) {
+	let token=	jwt.sign({
+			exp: Math.floor(Date.now() / 1000) + (60 * 60),
+			username: "Jim",
+			orgName: "Org1",
+		  }, 'thisismysecret');
+
+	req.headers.authorization = `Bearer ${token}`;	  
+
 		request(
 			{
 				headers: {
